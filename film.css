@@ -50,3 +50,12 @@ body::after {
     margin-left: 0.5em;
     letter-spacing: 0.05em;
 }
+
+/* The name "Yidi Zheng 郑一荻" — identical on every page */
+h1 {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #D8321F;
+    white-space: nowrap;
+}
