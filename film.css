@@ -231,3 +231,20 @@ a.project-title:hover,
     text-decoration: underline;
     text-underline-offset: 4px;
 }
+
+/* Lowercase labels, the same on every page: dates/locations and "tracklist" */
+.project-meta,
+.tracklist-header {
+    text-transform: lowercase;
+}
+
+/* Mix buttons: just a large red ▶ (■ while playing), no text */
+.audio-control-btn .text {
+    display: none;
+}
+.audio-control-btn .icon {
+    width: auto !important;
+    margin-right: 0 !important;
+    font-size: 1.9rem !important;
+    line-height: 1;
+}

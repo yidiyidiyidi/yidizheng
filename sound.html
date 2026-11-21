@@ -132,6 +132,16 @@
         }
 
         /* HIDE SOUNDCLOUD VISUALLY BUT KEEP FOR API TRACKING */
+        .yt-hidden-player {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            left: -9999px;
+        }
+
         .sc-hidden-player {
             position: absolute;
             width: 0;
@@ -271,8 +281,8 @@
             <div class="audio-section">
                 <div class="media-container left-content">
                     <!-- Native Button Trigger -->
-                    <button class="audio-control-btn" id="nts-toggle">
-                        <span class="icon">▶</span> <span class="text">PLAY MIX</span>
+                    <button class="audio-control-btn" id="nts-toggle" aria-label="Play mix">
+                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
                     </button>
 
                     <!-- Hidden SoundCloud iframe -->
@@ -309,6 +319,72 @@
             </div>
         </section>
 
+        <!-- C+ RADIO (audio from YouTube, played through a hidden player) -->
+        <section class="project" id="cplus-mix">
+            <div class="project-info">
+                <span class="project-title">[Mix] UK Funky and Dubstep with C+ Radio</span>
+                <span class="project-meta">Guangzhou, Sep 2026</span>
+            </div>
+
+            <div class="audio-section">
+                <div class="media-container left-content">
+                    <button class="audio-control-btn" id="cplus-toggle" aria-label="Play mix">
+                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
+                    </button>
+
+                    <!-- Hidden YouTube player: sound only, the video is never shown -->
+                    <div class="yt-hidden-player" aria-hidden="true"><div id="cplus-player"></div></div>
+                </div>
+
+                <div class="tracklist-wrapper">
+                    <div class="tracklist-header">TRACKLIST</div>
+                    <ul class="tracklist" id="cplus-tracklist">
+                        <li class="track-item"><span class="track-title">DaDaDin A</span><span class="track-artist">Tina Tokio</span></li>
+                        <li class="track-item"><span class="track-title">Misturada</span><span class="track-artist">Dj LK Denise Fontoura Miguel Bezerra</span></li>
+                        <li class="track-item"><span class="track-title">Nutridinha (Kerri Chandler Album Mix)</span><span class="track-artist">Césaria Évora</span></li>
+                        <li class="track-item"><span class="track-title">Nabby Riddim</span><span class="track-artist">Nabby Clifford Dj LK</span></li>
+                        <li class="track-item"><span class="track-title">Hakawati</span><span class="track-artist">Sadeedo</span></li>
+                        <li class="track-item"><span class="track-title">Leather Wallets 1JD</span><span class="track-artist">Sadeedo</span></li>
+                        <li class="track-item"><span class="track-title">Trust (A.Fruit Remix)</span><span class="track-artist">Morwell A.Fruit</span></li>
+                        <li class="track-item"><span class="track-title">Days</span><span class="track-artist">A.Fruit</span></li>
+                        <li class="track-item"><span class="track-title">SideQuest Nap (Maoupa Mazzocchetti Remix)</span><span class="track-artist">Meli Mena Maoupa Mazzocchetti</span></li>
+                        <li class="track-item"><span class="track-title">Reflection in Your Eyes</span><span class="track-artist">A.Fruit</span></li>
+                        <li class="track-item"><span class="track-title">también (Regal86 remix)</span><span class="track-artist">Maoupa Mazzocchetti</span></li>
+                        <li class="track-item"><span class="track-title">Guido Always Wins in the End</span><span class="track-artist">Maoupa Mazzocchetti</span></li>
+                        <li class="track-item"><span class="track-title">Frique Frique (Remasterd 2024)</span><span class="track-artist">Rei Helder Sebem MEM</span></li>
+                        <li class="track-item"><span class="track-title">Mariquinha</span><span class="track-artist">Rei Helder</span></li>
+                        <li class="track-item"><span class="track-title">Quraq</span><span class="track-artist">Edigee</span></li>
+                        <li class="track-item"><span class="track-title">Dutty Business (Anna Morgan Remix)</span><span class="track-artist">Honeydrip Anna Morgan</span></li>
+                        <li class="track-item"><span class="track-title">Kedey Zary</span><span class="track-artist">Edigee</span></li>
+                        <li class="track-item"><span class="track-title">Pomba (versão carnaval)</span><span class="track-artist">Césaria Évora</span></li>
+                        <li class="track-item"><span class="track-title">Malandrice</span><span class="track-artist">Dj Doraemon</span></li>
+                        <li class="track-item"><span class="track-title">Encosta</span><span class="track-artist">Dj Doraemon</span></li>
+                        <li class="track-item"><span class="track-title">G Man</span><span class="track-artist">Mathis Ruffing</span></li>
+                        <li class="track-item"><span class="track-title">Chale</span><span class="track-artist">Gafacci Bryte</span></li>
+                        <li class="track-item"><span class="track-title">You Go Dance</span><span class="track-artist">Bryte</span></li>
+                        <li class="track-item"><span class="track-title">Lucky Stoned</span><span class="track-artist">Freak Out!</span></li>
+                        <li class="track-item"><span class="track-title">Ouais Ouais Ouais (Deetron Presents Soulmate Remix)</span><span class="track-artist">Bok Bok</span></li>
+                        <li class="track-item"><span class="track-title">Watch Me Steal It Back</span><span class="track-artist">Poison Zcora</span></li>
+                        <li class="track-item"><span class="track-title">Bass Bin</span><span class="track-artist">Hagan</span></li>
+                        <li class="track-item"><span class="track-title">Phantom Pressure (Small Crab Remix)</span><span class="track-artist">Indent</span></li>
+                        <li class="track-item"><span class="track-title">Heart Meter</span><span class="track-artist">Darama Kush Arora</span></li>
+                        <li class="track-item"><span class="track-title">Six Horns (Toma Kami Remix)</span><span class="track-artist">Guchon</span></li>
+                        <li class="track-item"><span class="track-title">Fiction</span><span class="track-artist">Guchon, andrew</span></li>
+                        <li class="track-item"><span class="track-title">Nabby Riddim</span><span class="track-artist">Nabby Clifford Dj LK</span></li>
+                        <li class="track-item"><span class="track-title">Overload</span><span class="track-artist">dj KTM</span></li>
+                        <li class="track-item"><span class="track-title">Galaxy Gas</span><span class="track-artist">Drumheller</span></li>
+                        <li class="track-item"><span class="track-title">Angola (Carl Craig Mix)</span><span class="track-artist">Césaria Évora</span></li>
+                        <li class="track-item"><span class="track-title">Jit Bit.exe</span><span class="track-artist">666uba</span></li>
+                        <li class="track-item"><span class="track-title">TANSA</span><span class="track-artist">Vitu Valera Sean Play Nice</span></li>
+                        <li class="track-item"><span class="track-title">Still Tippin'</span><span class="track-artist">Bobby Kultura</span></li>
+                        <li class="track-item"><span class="track-title">Drumming</span><span class="track-artist">DJ Lag</span></li>
+                        <li class="track-item"><span class="track-title">Jyanta</span><span class="track-artist">Kami-O</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
         <!-- PROJECT 1: MOTH RADIO -->
         <section class="project" id="moth-mix">
             <div class="project-info">
@@ -319,8 +395,8 @@
             <div class="audio-section">
                 <div class="media-container left-content">
                     <!-- Native Button Trigger -->
-                    <button class="audio-control-btn" id="moth-toggle">
-                        <span class="icon">▶</span> <span class="text">PLAY MIX</span>
+                    <button class="audio-control-btn" id="moth-toggle" aria-label="Play mix">
+                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
                     </button>
 
                     <!-- Hidden SoundCloud iframe -->
@@ -370,8 +446,8 @@
             <div class="audio-section">
                 <div class="media-container left-content">
                     <!-- Native Button Trigger -->
-                    <button class="audio-control-btn" id="byyb-toggle">
-                        <span class="icon">▶</span> <span class="text">PLAY MIX</span>
+                    <button class="audio-control-btn" id="byyb-toggle" aria-label="Play mix">
+                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
                     </button>
 
                     <!-- Hidden SoundCloud iframe -->
@@ -439,7 +515,7 @@
         });
 
         ntsWidget.bind(SC.Widget.Events.PAUSE, function() {
-            ntsIcon.innerText = "▶";
+            ntsIcon.innerText = "▶\uFE0E";
             ntsText.innerText = "PLAY MIX";
         });
 
@@ -461,7 +537,7 @@
         });
 
         mothWidget.bind(SC.Widget.Events.PAUSE, function() {
-            mothIcon.innerText = "▶";
+            mothIcon.innerText = "▶\uFE0E";
             mothText.innerText = "PLAY MIX";
         });
 
@@ -504,10 +580,50 @@
         });
 
         byybWidget.bind(SC.Widget.Events.PAUSE, function() {
-            byybIcon.innerText = "▶";
+            byybIcon.innerText = "▶\uFE0E";
             byybText.innerText = "PLAY MIX";
         });
     });
+</script>
+
+<!-- YOUTUBE IFRAME API (C+ Radio mix: audio only) -->
+<script>
+    (function () {
+        var toggle = document.getElementById('cplus-toggle');
+        var icon = toggle.querySelector('.icon');
+        var text = toggle.querySelector('.text');
+        var player = null, ready = false, wantPlay = false;
+
+        function setPlaying(on) {
+            icon.innerText = on ? "■" : "▶\uFE0E";
+            text.innerText = on ? "PAUSE MIX" : "PLAY MIX";
+        }
+
+        window.onYouTubeIframeAPIReady = function () {
+            player = new YT.Player('cplus-player', {
+                videoId: '7bsKxmcLTiY',
+                width: 1, height: 1,
+                playerVars: { autoplay: 0, controls: 0, playsinline: 1, rel: 0 },
+                events: {
+                    onReady: function () { ready = true; if (wantPlay) player.playVideo(); },
+                    onStateChange: function (e) {
+                        if (e.data === YT.PlayerState.PLAYING) setPlaying(true);
+                        if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) setPlaying(false);
+                    }
+                }
+            });
+        };
+
+        toggle.addEventListener('click', function () {
+            if (!ready) { wantPlay = !wantPlay; return; }
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) player.pauseVideo();
+            else player.playVideo();
+        });
+
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+    })();
 </script>
 
 </body>
