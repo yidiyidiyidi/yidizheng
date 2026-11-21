@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yidi Zheng</title>
+    <link rel="stylesheet" href="film.css">
+    <style>
+        :root {
+            --photo-w: 265px;   /* photo column */
+            --text-w: 460px;    /* bio column */
+            --col-gap: 160px;   /* space between photo and bio */
+        }
+
+        body {
+            color: #555;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            margin: 0;
+            padding: 60px 20px;
+            /* centre the whole block vertically so top and bottom space match */
+            min-height: 100vh;
+            box-sizing: border-box;
+            align-items: center;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* container is exactly as wide as photo + gap + bio,
+           so the whole block sits centred with equal space left and right */
+        .container {
+            max-width: calc(var(--photo-w) + var(--col-gap) + var(--text-w));
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        header {
+            margin-bottom: 85px;
+            text-align: left;
+        }
+
+        h1 {
+            /* name is as wide as the photo: 10 monospace characters at ~0.6em each;
+               a small script below fine-tunes it for the visitor's font */
+            font-size: calc(var(--photo-w) / 6);
+            white-space: nowrap;
+            font-weight: bold;
+            color: #D8321F; /* Lip red */
+            margin: 0 0 10px 0;
+        }
+
+        h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* PHOTO LEFT, BIO RIGHT — links below share the same two columns */
+        .intro {
+            display: grid;
+            grid-template-columns: var(--photo-w) var(--text-w);
+            column-gap: var(--col-gap);
+            align-items: start;
+        }
+
+        .intro {
+            margin-bottom: 120px;
+        }
+
+
+        .photo {
+            width: var(--photo-w);
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .bio {
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bio p {
+            margin: 0 0 1em 0;
+        }
+
+        .bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* SECONDARY PAGE ENTRIES
+           one row from the photo's left edge to the bio's right edge */
+        .entries {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            width: calc(var(--photo-w) + var(--col-gap) + var(--text-w));
+            max-width: 100%;
+        }
+
+        .entries a {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #D8321F; /* Lip red */
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .entries a:hover {
+            opacity: 0.7;
+        }
+
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 760px) {
+            body {
+                padding: 40px 15px;
+                align-items: flex-start;
+            }
+            header {
+                margin-bottom: 60px;
+            }
+            h1 {
+                font-size: 2.1rem !important;  /* English + Chinese name fit on one line */
+            }
+            .intro {
+                grid-template-columns: 1fr;
+                row-gap: 28px;
+                margin-bottom: 60px;
+            }
+            .photo {
+                width: 100%;
+            }
+            .entries {
+                width: 100%;
+            }
+            .entries a {
+                font-size: 1.05rem;   /* four links fit on one line */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1><a href="index.html">Yidi Zheng</a><span class="name-zh" lang="zh-Hans">郑一荻</span></h1>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="photo">
+                <img src="yidi.jpg" alt="Portrait of Yidi Zheng">
+            </div>
+            <div class="bio">
+                <p>Yidi Zheng is a PhD candidate in Cultural Anthropology at Duke University. Her dissertation project explores the private governance of emerging risks in China–Africa maritime trade, as well as the ways in which the same risks are identified, reinterpreted, and mediated by the infrastructure of brokerage.</p>
+                <p>Her fieldwork is supported by the Wenner-Gren Foundation and by her occasional work as a DJ of electronic music with transnational roots.</p>
+                <p>Before joining Duke, she earned an M.A. in Migration and Diaspora Studies (with Distinction) from SOAS, University of London, and a B.A. in French Language and Literature from Sichuan University. Her earlier research and advocacy focused on rural-to-urban labor migration within China's agricultural and industrial sectors.</p>
+            </div>
+        </section>
+
+        <nav class="entries">
+            <a href="research.html">Research</a>
+            <a href="conference.html">Conference</a>
+            <a href="sound.html">Sound</a>
+            <a href="visual.html">Visual</a>
+        </nav>
+    </main>
+</div>
+
+<script>
+    // Make "Yidi Zheng" exactly as wide as the photo (desktop only),
+    // whatever monospace font the visitor's computer uses.
+    (function () {
+        var h1 = document.querySelector('h1');
+        var photo = document.querySelector('.photo');
+        function fit() {
+            h1.style.fontSize = '';
+            if (window.innerWidth <= 760) return;
+            var range = document.createRange();
+            range.selectNodeContents(h1.firstElementChild);
+            var textW = range.getBoundingClientRect().width;
+            var photoW = photo.getBoundingClientRect().width;
+            if (textW > 0) {
+                var size = parseFloat(getComputedStyle(h1).fontSize);
+                h1.style.fontSize = (size * photoW / textW) + 'px';
+            }
+        }
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+        window.addEventListener('load', fit);
+        window.addEventListener('resize', fit);
+        fit();
+    })();
+</script>
+
+</body>
+</html>

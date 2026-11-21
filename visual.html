@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual · Yidi Zheng</title>
+    <link rel="stylesheet" href="film.css">
+    <style>
+        body {
+            background-color: transparent;
+            color: #555;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            margin: 0;
+            padding: 60px 20px;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+        .container { max-width: 900px; width: 100%; box-sizing: border-box; }
+        header { margin-bottom: 80px; }
+        h1 { font-size: 1.6rem; font-weight: bold; color: #D8321F; margin: 0 0 10px 0; }
+        h1 a { color: inherit; text-decoration: none; }
+        .page-title { font-size: 0.85rem; font-weight: bold; color: #555; margin-top: -10px; }
+        .back { font-size: 0.75rem; font-weight: bold; margin: -50px 0 50px 0; }
+        .back a { color: #888; text-decoration: none; }
+        .back a:hover { color: #D8321F; }
+
+        .project { margin-bottom: 60px; }
+        .project-info { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px; }
+        .project-title { font-size: 0.8rem; color: #D8321F; font-weight: bold; }
+        .project-meta { font-size: 0.75rem; font-weight: bold; color: #555; margin-top: 2px; }
+
+        /* the image: full column width, click to open full size */
+        .project-image { display: block; margin: 5px 0 15px 0; }
+        .project-image img { display: block; width: 100%; height: auto; }
+
+        .description { font-size: 0.75rem; }
+        .description p { font-size: 0.75rem; margin: 0 0 10px 0; color: #555; }
+
+        .right-action-link { display: block; margin-top: 10px; font-size: 0.75rem; font-weight: bold; }
+        .right-action-link a { color: #888; text-decoration: none; }
+        .right-action-link a:hover { color: #D8321F; }
+
+        @media (max-width: 600px) {
+            body { padding: 40px 15px; }
+            header { margin-bottom: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1><a href="index.html">Yidi Zheng</a><span class="name-zh" lang="zh-Hans">郑一荻</span></h1>
+        <div class="page-title">Visual</div>
+    </header>
+
+    <main>
+        <div class="back"><a href="index.html">← back</a></div>
+
+        <!-- MAP SERIES -->
+        <section class="project" id="territorial-errors">
+            <div class="project-info">
+                <span class="project-title">[Digital Cartography] Territorial Errors of Spatiotemporal Overlap 捉虫时空交集</span>
+                <span class="project-meta">Durham, NC, Apr 2025</span>
+            </div>
+
+            <a class="project-image" href="territorial-errors.png" target="_blank">
+                <img src="territorial-errors.png" alt="Map series Territorial Errors of Spatiotemporal Overlap: cellular base station coverage and overlapping user trajectories in central Shanghai" loading="lazy">
+            </a>
+
+            <div class="description">
+                <p>
+                    My map series, <i>Territorial Errors of Spatiotemporal Overlap</i>, traces the disconnect between official narratives and the realities of telecommunications infrastructure—between the techno-utopian vision of the Dynamic Zero-COVID regime and the territorial errors embedded in its crude algorithm. The maps focus on central districts of Shanghai, chosen for the availability of data on cellular station distribution and individual cellular trajectories. The scale is deliberately limited to maintain the legibility of both base station coverage and movement paths.
+                </p>
+                <div class="right-action-link">
+                    <a href="territorial-errors.png" target="_blank">View Full Size →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
