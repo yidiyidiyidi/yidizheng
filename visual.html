@@ -21,9 +21,6 @@
         h1 { margin: 0 0 10px 0; }  /* size, font, colour: see film.css */
         h1 a { color: inherit; text-decoration: none; }
         .page-title { font-size: 0.85rem; font-weight: bold; color: #555; margin-top: -10px; }
-        .back { font-size: 0.875rem; font-weight: bold; margin: -50px 0 50px 0; }
-        .back a { color: #888; text-decoration: underline; text-underline-offset: 3px; }
-        .back a:hover { color: #D8321F; }
 
         .project { margin-bottom: 60px; }
         .project-info { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px; }
@@ -37,9 +34,6 @@
         .description { font-size: 0.75rem; }
         .description p { font-size: 0.75rem; margin: 0 0 10px 0; color: #555; }
 
-        .right-action-link { display: block; margin-top: 10px; font-size: 0.875rem; font-weight: bold; }
-        .right-action-link a { color: #888; text-decoration: underline; text-underline-offset: 3px; }
-        .right-action-link a:hover { color: #D8321F; }
 
         @media (max-width: 600px) {
             body { padding: 40px 15px; }
@@ -49,19 +43,27 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container site">
     <header>
         <h1><a href="index.html">Yidi Zheng</a><span class="name-zh" lang="zh-Hans">郑一荻</span></h1>
         <div class="page-title">Visual</div>
     </header>
 
+    <div class="layout">
+            <nav class="side-nav" aria-label="Sections">
+                <a href="index.html"><span class="radio" aria-hidden="true"></span>Bio</a>
+                <a href="research.html"><span class="radio" aria-hidden="true"></span>Research</a>
+                <a href="conference.html"><span class="radio" aria-hidden="true"></span>Conference</a>
+                <a href="sound.html"><span class="radio" aria-hidden="true"></span>Sound</a>
+                <a href="visual.html" class="current" aria-current="page"><span class="radio" aria-hidden="true"></span>Visual</a>
+            </nav>
+
     <main>
-        <div class="back"><a href="index.html">Back</a></div>
 
         <!-- MAP SERIES -->
         <section class="project" id="territorial-errors">
             <div class="project-info">
-                <span class="project-title">[Digital Cartography] Territorial Errors of Spatiotemporal Overlap 捉虫时空交集</span>
+                <a class="project-title" href="territorial-errors.png" target="_blank">[Digital Cartography] Territorial Errors of Spatiotemporal Overlap 捉虫时空交集</a>
                 <span class="project-meta">Durham, Apr 2025</span>
             </div>
 
@@ -73,12 +75,10 @@
                 <p>
                     My map series, <i>Territorial Errors of Spatiotemporal Overlap</i>, traces the disconnect between official narratives and the realities of telecommunications infrastructure—between the techno-utopian vision of the Dynamic Zero-COVID regime and the territorial errors embedded in its crude algorithm. The maps focus on central districts of Shanghai, chosen for the availability of data on cellular station distribution and individual cellular trajectories. The scale is deliberately limited to maintain the legibility of both base station coverage and movement paths.
                 </p>
-                <div class="right-action-link">
-                    <a href="territorial-errors.png" target="_blank">View Full Size</a>
-                </div>
             </div>
         </section>
     </main>
+    </div>
 </div>
 
 </body>

@@ -59,3 +59,105 @@ h1 {
     color: #D8321F;
     white-space: nowrap;
 }
+
+/* ==========================================================
+   SIDE MENU — Bio / Research / Conference / Sound / Visual
+   Same on every page, stays in view while scrolling.
+   Each entry has a small red radio button on its right;
+   the current page's button is filled with a dot.
+   ========================================================== */
+.container.site {
+    max-width: 1130px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    column-gap: 70px;
+    align-items: start;
+}
+
+.side-nav {
+    position: sticky;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* same height as the Bio photo (265px wide, 3:4) so the first entry
+       lines up with its top edge and the last with its bottom edge */
+    height: calc(265px * 4 / 3);
+}
+
+.side-nav a {
+    display: inline-flex;
+    align-items: center;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #D8321F;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.side-nav .radio {
+    width: 0.8em;
+    height: 0.8em;
+    margin-right: 0.55em;
+    border: 2px solid #D8321F;
+    border-radius: 50%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    background: transparent;
+    transition: background 0.15s ease;
+}
+
+/* hover: a faint dot appears */
+.side-nav a:hover .radio {
+    background: radial-gradient(circle, rgba(216, 50, 31, 0.35) 0 34%, transparent 38%);
+}
+
+/* current page: solid dot inside the ring */
+.side-nav a.current .radio {
+    background: radial-gradient(circle, #D8321F 0 34%, transparent 38%);
+}
+
+/* phones: menu becomes one row under the name */
+@media (max-width: 760px) {
+    .layout {
+        display: block;
+    }
+    .side-nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+        gap: 4px 0;
+        padding: 10px 0;
+        margin-bottom: 40px;
+        background: #fff;
+    }
+    .side-nav a {
+        font-size: 0.78rem;
+    }
+    .side-nav .radio {
+        margin-right: 0.35em;
+        border-width: 1.5px;
+    }
+}
+
+/* Project titles that are links (to the mix, article, etc.) */
+a.project-title,
+.project-title a {
+    color: #D8321F;
+    text-decoration: none;
+}
+a.project-title:hover,
+.project-title a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}

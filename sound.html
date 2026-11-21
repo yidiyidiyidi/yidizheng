@@ -48,19 +48,6 @@
             margin-top: -10px;
         }
 
-        .back {
-            font-size: 0.875rem;
-            font-weight: bold;
-            margin: -50px 0 50px 0;
-        }
-        .back a {
-            color: #888;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-        .back a:hover {
-            color: #D8321F;
-        }
 
         .contact-info {
             margin-top: -10px; 
@@ -218,22 +205,6 @@
             opacity: 1;
         }
 
-        /* RIGHT-ALIGNED ACTION LINKS WITH MATCHED STYLING */
-        .right-action-link {
-            display: block;
-            margin-top: 10px;
-            font-size: 0.875rem;
-            font-weight: bold;
-            text-align: right;
-        }
-        .right-action-link a {
-            color: #888;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-        .right-action-link a:hover {
-            color: #D8321F;
-        }
 
         /* MOBILE OPTIMIZATIONS */
         @media (max-width: 600px) {
@@ -276,27 +247,32 @@
             .article-description-wrapper {
                 max-width: 100%;
             }
-            .right-action-link {
-                margin-top: 5px;
-            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container site">
     <header>
         <h1><a href="index.html">Yidi Zheng</a><span class="name-zh" lang="zh-Hans">郑一荻</span></h1>
         <div class="page-title">Sound</div>
     </header>
 
+    <div class="layout">
+            <nav class="side-nav" aria-label="Sections">
+                <a href="index.html"><span class="radio" aria-hidden="true"></span>Bio</a>
+                <a href="research.html"><span class="radio" aria-hidden="true"></span>Research</a>
+                <a href="conference.html"><span class="radio" aria-hidden="true"></span>Conference</a>
+                <a href="sound.html" class="current" aria-current="page"><span class="radio" aria-hidden="true"></span>Sound</a>
+                <a href="visual.html"><span class="radio" aria-hidden="true"></span>Visual</a>
+            </nav>
+
     <main>
-        <div class="back"><a href="index.html">Back</a></div>
 
         <!-- PROJECT 0: NTS RADIO -->
         <section class="project" id="nts-mix">
             <div class="project-info">
-                <span class="project-title">[Mix] Dubstep, Drum & Bass, Footwork with NTS Radio</span>
+                <a class="project-title" href="https://www.nts.live/shows/dancing-2026/episodes/dancing-2026-rooftop-variety-shop-mix-w-yidiyidiyidi-21st-september-2026" target="_blank">[Mix] Dubstep, Drum & Bass, Footwork with NTS Radio</a>
                 <span class="project-meta">Guangzhou, Sep 2026</span>
             </div>
             
@@ -337,12 +313,6 @@
                         <li class="track-item"><span class="track-title">Kylli Ma</span><span class="track-artist">Muadeep</span></li>
                         <li class="track-item"><span class="track-title">Kill Da DJ</span><span class="track-artist">Traxman</span></li>
                     </ul>
-
-                    <div class="right-action-link">
-                        <a href="https://www.nts.live/shows/dancing-2026/episodes/dancing-2026-rooftop-variety-shop-mix-w-yidiyidiyidi-21st-september-2026" target="_blank">
-                            Listen on NTS Radio
-                        </a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -350,7 +320,7 @@
         <!-- PROJECT 1: MOTH RADIO -->
         <section class="project" id="moth-mix">
             <div class="project-info">
-                <span class="project-title">[Mix] Global Bass, Baile Funk, Grime with Möth Radio</span>
+                <a class="project-title" href="https://soundcloud.com/moth-radio/global-bass-baile-funk-grime" target="_blank">[Mix] Global Bass, Baile Funk, Grime with Möth Radio</a>
                 <span class="project-meta">Hong Kong, May 2026</span>
             </div>
             
@@ -394,12 +364,6 @@
                         <li class="track-item" data-time="2520"><span class="track-title">Ritmo Actual (T.NO remix)</span><span class="track-artist">Toma Kami</span></li>
                         <li class="track-item" data-time="2700"><span class="track-title">BLAAS FLUIT</span><span class="track-artist">Ziggy Twiss</span></li>
                     </ul>
-                    
-                    <div class="right-action-link">
-                        <a href="https://soundcloud.com/moth-radio/global-bass-baile-funk-grime" target="_blank">
-                            Listen on SoundCloud
-                        </a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -407,7 +371,7 @@
         <!-- PROJECT 2: BYYB RADIO -->
         <section class="project" id="mix">
             <div class="project-info">
-                <span class="project-title">[Mix] Latin Club, Electro, Ghetto House with byyb.radio</span>
+                <a class="project-title" href="https://soundcloud.com/byyb_radio/yidiyidiyidi-byyb-radio-mar-14" target="_blank">[Mix] Latin Club, Electro, Ghetto House with byyb.radio</a>
                 <span class="project-meta">Shanghai, Mar 2026</span>
             </div>
             
@@ -454,17 +418,12 @@
                         <li class="track-item"><span class="track-title">Don't Stop</span><span class="track-artist">COIDO</span></li>
                         <li class="track-item"><span class="track-title">Three O'Clock</span><span class="track-artist">DJ Hesss Young Lychee</span></li>
                     </ul>
-                    
-                    <div class="right-action-link">
-                        <a href="https://soundcloud.com/byyb_radio/yidiyidiyidi-byyb-radio-mar-14" target="_blank">
-                            Listen on SoundCloud
-                        </a>
-                    </div>
                 </div>
             </div>
         </section>
 
     </main>
+    </div>
 </div>
 
 <!-- SOUNDCLOUD WIDGET API -->

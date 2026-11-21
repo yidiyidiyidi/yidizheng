@@ -9,7 +9,7 @@
         :root {
             --photo-w: 265px;   /* photo column */
             --text-w: 460px;    /* bio column */
-            --col-gap: 160px;   /* space between photo and bio */
+            --col-gap: 90px;    /* space between photo and bio */
         }
 
         body {
@@ -26,10 +26,8 @@
             justify-content: center;
         }
 
-        /* container is exactly as wide as photo + gap + bio,
-           so the whole block sits centred with equal space left and right */
         .container {
-            max-width: calc(var(--photo-w) + var(--col-gap) + var(--text-w));
+            max-width: 900px;
             width: 100%;
             box-sizing: border-box;
         }
@@ -60,7 +58,7 @@
         }
 
         .intro {
-            margin-bottom: 90px;
+            margin-bottom: 0;
         }
 
 
@@ -88,29 +86,6 @@
             margin-bottom: 0;
         }
 
-        /* SECONDARY PAGE ENTRIES
-           one row from the photo's left edge to the bio's right edge */
-        .entries {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            width: calc(var(--photo-w) + var(--col-gap) + var(--text-w));
-            max-width: 100%;
-        }
-
-        .entries a {
-            font-size: 1.125rem;
-            font-weight: bold;
-            color: #D8321F; /* Lip red */
-            text-decoration: none;
-            position: relative;
-            z-index: 1;
-        }
-
-        .entries a:hover {
-            opacity: 0.7;
-        }
-
         /* MOBILE OPTIMIZATIONS */
         @media (max-width: 760px) {
             body {
@@ -128,21 +103,24 @@
             .photo {
                 width: 100%;
             }
-            .entries {
-                width: 100%;
-            }
-            .entries a {
-                font-size: 0.95rem;
-            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container site">
     <header>
         <h1><a href="index.html">Yidi Zheng</a><span class="name-zh" lang="zh-Hans">郑一荻</span></h1>
     </header>
+
+    <div class="layout">
+            <nav class="side-nav" aria-label="Sections">
+                <a href="index.html" class="current" aria-current="page"><span class="radio" aria-hidden="true"></span>Bio</a>
+                <a href="research.html"><span class="radio" aria-hidden="true"></span>Research</a>
+                <a href="conference.html"><span class="radio" aria-hidden="true"></span>Conference</a>
+                <a href="sound.html"><span class="radio" aria-hidden="true"></span>Sound</a>
+                <a href="visual.html"><span class="radio" aria-hidden="true"></span>Visual</a>
+            </nav>
 
     <main>
         <section class="intro">
@@ -155,14 +133,8 @@
                 <p>Before joining Duke, she earned an M.A. in Migration and Diaspora Studies (with Distinction) from SOAS, University of London, and a B.A. in French Language and Literature from Sichuan University. Her earlier research and advocacy focused on rural-to-urban labor migration within China's agricultural and industrial sectors.</p>
             </div>
         </section>
-
-        <nav class="entries">
-            <a href="research.html">Research</a>
-            <a href="conference.html">Conference</a>
-            <a href="sound.html">Sound</a>
-            <a href="visual.html">Visual</a>
-        </nav>
     </main>
+    </div>
 </div>
 
 
