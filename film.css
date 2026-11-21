@@ -1,0 +1,212 @@
+/* ==========================================================
+   FILM BACKGROUND — shared by all pages
+   - flat white background
+   - animated film grain over everything, like the photo
+   ========================================================== */
+
+html {
+    background-color: #fff;
+}
+
+body {
+    background-color: transparent !important;
+    position: relative;
+}
+
+/* Film grain */
+body::after {
+    content: "";
+    position: fixed;
+    inset: -100px;
+    z-index: 1000;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    animation: film-grain 0.9s steps(6) infinite;
+}
+
+@keyframes film-grain {
+    0%   { transform: translate(0, 0); }
+    17%  { transform: translate(-40px, 25px); }
+    33%  { transform: translate(30px, -45px); }
+    50%  { transform: translate(-25px, -15px); }
+    67%  { transform: translate(45px, 35px); }
+    83%  { transform: translate(-50px, 10px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Respect users who turn off motion */
+@media (prefers-reduced-motion: reduce) {
+    body::after { animation: none; }
+}
+
+/* Chinese name next to "Yidi Zheng" — same red and size,
+   in a bold Chinese sans-serif that matches the monospace weight */
+.name-zh {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+    font-weight: 700;
+    margin-left: 0.5em;
+    letter-spacing: 0.05em;
+}
+
+/* The name "Yidi Zheng 郑一荻" — identical on every page */
+h1 {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #D8321F;
+    white-space: nowrap;
+    text-transform: uppercase;   /* YIDI ZHENG */
+}
+
+/* Contact line under the name — grey, same size as body text */
+.contact {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.85rem;
+    color: #555;
+    margin: 0;
+    white-space: nowrap;
+}
+.contact a {
+    display: block;          /* email on its own line under CONTACT */
+    color: inherit;
+    text-decoration: none;
+}
+.contact a:hover {
+    color: #D8321F;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ==========================================================
+   SIDE MENU — Bio / Research / Conference / Sound / Visual
+   Same on every page, stays in view while scrolling.
+   Each entry has a small red radio button on its right;
+   the current page's button is filled with a dot.
+   ========================================================== */
+.container.site {
+    /* menu 150 + gap 70 + content 815 (Bio photo 265 + gap 90 + bio 460),
+       so the right edge of every page lines up with the bio's right edge */
+    max-width: 1035px;
+}
+
+/* Header: name on the left, contact on the right (top-aligned),
+   page title (Research, Sound…) under the name */
+.site > header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    column-gap: 30px;
+}
+.site > header h1 { grid-column: 1; grid-row: 1; }
+.site > header .contact {
+    grid-column: 2; grid-row: 1; text-align: right;
+    /* nudge so the tops of the letters line up with YIDI ZHENG */
+    margin-top: 14px;
+}
+.site > header .page-title { grid-column: 1; grid-row: 2; }
+
+.layout {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    column-gap: 70px;
+    align-items: start;
+}
+
+.side-nav {
+    position: sticky;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* same height as the Bio photo (265px wide, 3:4) so the first entry
+       lines up with its top edge and the last with its bottom edge */
+    height: calc(265px * 4 / 3);
+}
+
+.side-nav a {
+    display: inline-flex;
+    align-items: center;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #D8321F;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.side-nav .radio {
+    width: 0.8em;
+    height: 0.8em;
+    margin-right: 0.55em;
+    border: 2px solid #D8321F;
+    border-radius: 50%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    background: transparent;
+    transition: background 0.15s ease;
+}
+
+/* hover: a faint dot appears */
+.side-nav a:hover .radio {
+    background: radial-gradient(circle, rgba(216, 50, 31, 0.35) 0 34%, transparent 38%);
+}
+
+/* current page: solid dot inside the ring */
+.side-nav a.current .radio {
+    background: radial-gradient(circle, #D8321F 0 34%, transparent 38%);
+}
+
+/* phones: menu becomes one row under the name */
+@media (max-width: 760px) {
+    .site > header {
+        grid-template-columns: 1fr;
+    }
+    .site > header .contact {
+        grid-column: 1;
+        grid-row: 2;
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+    .site > header .page-title { grid-row: 3; }
+    .layout {
+        display: block;
+    }
+    .side-nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+        gap: 4px 0;
+        padding: 10px 0;
+        margin-bottom: 40px;
+        background: #fff;
+    }
+    .side-nav a {
+        font-size: 0.78rem;
+    }
+    .side-nav .radio {
+        margin-right: 0.35em;
+        border-width: 1.5px;
+    }
+}
+
+/* Project titles that are links (to the mix, article, etc.) */
+a.project-title,
+.project-title a {
+    color: #D8321F;
+    text-decoration: none;
+}
+a.project-title:hover,
+.project-title a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
