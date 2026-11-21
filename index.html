@@ -40,9 +40,7 @@
         }
 
         h1 {
-            /* name is as wide as the photo: 10 monospace characters at ~0.6em each;
-               a small script below fine-tunes it for the visitor's font */
-            font-size: calc(var(--photo-w) / 6);
+            font-size: 2.25rem;
             white-space: nowrap;
             font-weight: bold;
             color: #D8321F; /* Lip red */
@@ -102,7 +100,7 @@
         }
 
         .entries a {
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: bold;
             color: #D8321F; /* Lip red */
             text-decoration: none;
@@ -124,7 +122,7 @@
                 margin-bottom: 60px;
             }
             h1 {
-                font-size: 2.1rem !important;  /* English + Chinese name fit on one line */
+                font-size: 1.6rem;
             }
             .intro {
                 grid-template-columns: 1fr;
@@ -138,7 +136,7 @@
                 width: 100%;
             }
             .entries a {
-                font-size: 1.05rem;   /* four links fit on one line */
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -171,30 +169,6 @@
     </main>
 </div>
 
-<script>
-    // Make "Yidi Zheng" exactly as wide as the photo (desktop only),
-    // whatever monospace font the visitor's computer uses.
-    (function () {
-        var h1 = document.querySelector('h1');
-        var photo = document.querySelector('.photo');
-        function fit() {
-            h1.style.fontSize = '';
-            if (window.innerWidth <= 760) return;
-            var range = document.createRange();
-            range.selectNodeContents(h1.firstElementChild);
-            var textW = range.getBoundingClientRect().width;
-            var photoW = photo.getBoundingClientRect().width;
-            if (textW > 0) {
-                var size = parseFloat(getComputedStyle(h1).fontSize);
-                h1.style.fontSize = (size * photoW / textW) + 'px';
-            }
-        }
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
-        window.addEventListener('load', fit);
-        window.addEventListener('resize', fit);
-        fit();
-    })();
-</script>
 
 </body>
 </html>
