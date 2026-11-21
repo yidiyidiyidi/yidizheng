@@ -232,10 +232,15 @@ a.project-title:hover,
     text-underline-offset: 4px;
 }
 
-/* Lowercase labels, the same on every page: dates/locations and "tracklist" */
-.project-meta,
+/* "tracklist" label in lowercase */
 .tracklist-header {
     text-transform: lowercase;
+}
+
+/* Dates and locations: normal capitalization, regular weight (not bold) */
+.project-info .project-meta {
+    text-transform: none;
+    font-weight: normal;
 }
 
 /* Mix buttons: just a large red ▶ (■ while playing), no text */
