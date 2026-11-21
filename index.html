@@ -9,7 +9,7 @@
         :root {
             --photo-w: 265px;   /* photo column */
             --text-w: 460px;    /* bio column */
-            --col-gap: 90px;    /* space between photo and bio */
+            --col-gap: 60px;    /* space between photo and bio */
         }
 
         body {
@@ -17,10 +17,6 @@
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
             margin: 0;
             padding: 60px 20px;
-            /* centre the whole block vertically so top and bottom space match */
-            min-height: 100vh;
-            box-sizing: border-box;
-            align-items: center;
             line-height: 1.6;
             display: flex;
             justify-content: center;
@@ -52,8 +48,16 @@
         /* PHOTO LEFT, BIO RIGHT — links below share the same two columns */
         .intro {
             display: grid;
-            grid-template-columns: var(--photo-w) var(--text-w);
+            grid-template-columns: var(--text-w) var(--photo-w);
             column-gap: var(--col-gap);
+            justify-content: end;   /* bio + photo sit flush right; photo's right edge under CONTACT */
+        }
+
+        /* bio text on the left, photo on the right */
+        .intro .bio   { grid-column: 1; grid-row: 1; }
+        .intro .photo { grid-column: 2; grid-row: 1; }
+
+        .intro {
             align-items: start;
         }
 
@@ -103,6 +107,8 @@
             .photo {
                 width: 100%;
             }
+            .intro .photo { grid-column: 1; grid-row: 1; }
+            .intro .bio   { grid-column: 1; grid-row: 2; }
         }
     </style>
 </head>
@@ -110,8 +116,8 @@
 
 <div class="container site">
     <header>
-        <h1><a href="index.html">Yidi Zheng</a><span class="name-zh" lang="zh-Hans">郑一荻</span></h1>
-        <div class="contact">CONTACT <a href="mailto:yidi.zheng@duke.edu">yidi.zheng@duke.edu</a></div>
+        <h1><span class="name-zh" lang="zh-Hans">郑一荻</span><a href="index.html">Yidi Zheng</a></h1>
+        <div class="contact"><span class="contact-label">contact</span> <a href="mailto:yidi.zheng@duke.edu">yidi.zheng@duke.edu</a></div>
     </header>
 
     <div class="layout">

@@ -42,13 +42,16 @@ body::after {
     body::after { animation: none; }
 }
 
-/* Chinese name next to "Yidi Zheng" — same red and size,
+/* Chinese name to the left of "yidi zheng" — same red and size,
    in a bold Chinese sans-serif that matches the monospace weight */
 .name-zh {
     font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
     font-weight: 700;
-    margin-left: 0.5em;
-    letter-spacing: 0.05em;
+    /* spacing rule for the name (measured on screen, ~10px at 32px type):
+       郑 · 一 · 荻 gaps  =  "yidi" · "zheng" gap  =  1 unit
+       gap between 郑一荻 and yidi zheng       =  2 units */
+    letter-spacing: 0.25em;     /* opens 郑 一 荻 to ~10px apart */
+    margin-right: 0.32em;       /* ~20px between the Chinese and English names */
 }
 
 /* The name "Yidi Zheng 郑一荻" — identical on every page */
@@ -58,7 +61,8 @@ h1 {
     font-weight: bold;
     color: #D8321F;
     white-space: nowrap;
-    text-transform: uppercase;   /* YIDI ZHENG */
+    text-transform: lowercase;   /* yidi zheng */
+    word-spacing: -0.39em;       /* ~10px between "yidi" and "zheng" */
 }
 
 /* Contact line under the name — grey, same size as body text */
@@ -68,6 +72,9 @@ h1 {
     color: #555;
     margin: 0;
     white-space: nowrap;
+}
+.contact-label {
+    font-weight: bold;           /* "contact" in bold, lowercase */
 }
 .contact a {
     display: block;          /* email on its own line under CONTACT */
@@ -92,8 +99,17 @@ h1 {
     max-width: 1035px;
 }
 
-/* Header: name on the left, contact on the right (top-aligned),
-   page title (Research, Sound…) under the name */
+/* Same page margins and header spacing on every page,
+   so the name, 郑一荻 and CONTACT never move between pages */
+html body {
+    padding: 60px 20px;
+    align-items: flex-start;
+}
+.site > header {
+    margin-bottom: 80px;
+}
+
+/* Header: name on the left, contact on the right (top-aligned) */
 .site > header {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -103,10 +119,9 @@ h1 {
 .site > header h1 { grid-column: 1; grid-row: 1; }
 .site > header .contact {
     grid-column: 2; grid-row: 1; text-align: right;
-    /* nudge so the tops of the letters line up with YIDI ZHENG */
-    margin-top: 14px;
+    /* nudge so the top of "contact" lines up with the top of 郑一荻 yidi zheng */
+    margin-top: 7px;
 }
-.site > header .page-title { grid-column: 1; grid-row: 2; }
 
 .layout {
     display: grid;
@@ -136,6 +151,7 @@ h1 {
     color: #D8321F;
     text-decoration: none;
     line-height: 1;
+    text-transform: lowercase;   /* bio / research / conference / sound / visual */
 }
 
 .side-nav .radio {
@@ -162,6 +178,12 @@ h1 {
 
 /* phones: menu becomes one row under the name */
 @media (max-width: 760px) {
+    html body {
+        padding: 40px 15px;
+    }
+    .site > header {
+        margin-bottom: 40px;
+    }
     .site > header {
         grid-template-columns: 1fr;
     }
@@ -172,7 +194,6 @@ h1 {
         margin-top: 0;
         margin-bottom: 8px;
     }
-    .site > header .page-title { grid-row: 3; }
     .layout {
         display: block;
     }
