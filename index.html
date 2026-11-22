@@ -43,6 +43,9 @@
   ]
 }
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap">
     <link rel="stylesheet" href="film.css">
     <style>
         :root {
@@ -53,7 +56,7 @@
 
         body {
             color: #555;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;
             margin: 0;
             padding: 60px 20px;
             line-height: 1.6;
@@ -116,13 +119,19 @@
         }
 
         .bio {
-            font-size: 0.85rem;
+            /* the three paragraphs spread to fill exactly the photo's height,
+               so the text's top and bottom always line up with the photo */
+            height: calc(var(--photo-w) * 4 / 3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 0.9rem;
             position: relative;
             z-index: 1;
         }
 
         .bio p {
-            margin: 0 0 1em 0;
+            margin: 0;
         }
 
         .bio p:last-child {
@@ -147,7 +156,7 @@
                 width: 100%;
             }
             .intro .photo { grid-column: 1; grid-row: 1; }
-            .intro .bio   { grid-column: 1; grid-row: 2; }
+            .intro .bio   { grid-column: 1; grid-row: 2; height: auto; gap: 1em; }
         }
     </style>
 </head>
@@ -174,9 +183,9 @@
                 <img src="yidi.jpg" alt="Portrait of Yidi Zheng">
             </div>
             <div class="bio">
-                <p>Yidi Zheng is a PhD candidate in Cultural Anthropology at Duke University. Her dissertation project explores the private governance of emerging risks in China–Africa maritime trade, as well as the ways in which the same risks are identified, reinterpreted, and mediated by the infrastructure of brokerage.</p>
+                <p>Yidi Zheng is a PhD candidate in Cultural Anthropology at Duke University. Her dissertation project explores the private governance of historical and emerging risks in China–Africa maritime trade and the ways in which risks are identified, reinterpreted, and mediated by the infrastructure of brokerage.</p>
                 <p>Her fieldwork is supported by the Wenner-Gren Foundation and by her occasional work as a DJ of electronic music with transnational roots.</p>
-                <p>Before joining Duke, she earned an M.A. in Migration and Diaspora Studies (with Distinction) from SOAS, University of London, and a B.A. in French Language and Literature from Sichuan University. Her earlier research and advocacy focused on rural-to-urban labor migration within China's agricultural and industrial sectors.</p>
+                <p>Before joining Duke, she earned an M.A. in Migration and Diaspora Studies (with Distinction) from SOAS, University of London, and a B.A. in French Language and Literature from Sichuan University. Her earlier research and advocacy focused on labor migration within China's agricultural and industrial sectors.</p>
             </div>
         </section>
     </main>

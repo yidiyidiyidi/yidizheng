@@ -11,12 +11,15 @@
     <meta property="og:url" content="https://yidizheng.info/research.html">
     <meta property="og:image" content="https://yidizheng.info/yidi.jpg">
     <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap">
     <link rel="stylesheet" href="film.css">
     <style>
         body {
             background-color: transparent;
             color: #555;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;
             margin: 0;
             padding: 60px 20px;
             line-height: 1.6;
@@ -31,6 +34,8 @@
         .project { margin-bottom: 60px; }
         .project-info { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px; }
         .project-title { font-size: 1.05rem; color: #D8321F; font-weight: bold; }
+        /* where it was published: grey, same size as the title, not part of the link */
+        .venue { font-size: 1.05rem; color: #555; font-weight: normal; }
         .project-meta { font-size: 0.75rem; font-weight: bold; color: #555; margin-top: 2px; }
 
         .article-section { margin-top: 5px; }
@@ -66,14 +71,16 @@
         <!-- ARTICLE -->
         <section class="project" id="article">
             <div class="project-info">
-                <a class="project-title" href="https://criticalasianstudies.org/commentary/2026/1/22/special-series-new-directions-in-africa-china-studies-yidi-zhengnbspcapturing-the-face-afro-inclusive-machine-visions-from-south-china" target="_blank">[article] Capturing the Face: Afro-Inclusive Machine Visions</a>
+                <div class="title-line">
+                    <a class="project-title" href="https://criticalasianstudies.org/commentary/2026/1/22/special-series-new-directions-in-africa-china-studies-yidi-zhengnbspcapturing-the-face-afro-inclusive-machine-visions-from-south-china" target="_blank">Capturing the Face: Afro-Inclusive Machine Visions</a><span class="venue">, <i>Critical Asian Studies</i> Commentary Board</span>
+                </div>
                 <span class="project-meta">Durham/Guangzhou, Jan 2026</span>
             </div>
             <div class="article-section">
                 <!-- Description aligned right -->
                 <div class="article-description-wrapper">
                     <p>
-                        Published in <i>Critical Asian Studies</i> commentary board, as part of the special series <i>New Directions in Africa-China Studies</i>. This article invites a critique of the techno-optimism surrounding the Chinese-designed Afro-inclusive facial recognition technologies.
+                        Published as part of the special series <i>New Directions in Africa-China Studies</i>. This article invites a critique of the techno-optimism surrounding the Chinese-designed Afro-inclusive facial recognition technologies.
                     </p>
                 </div>
             </div>

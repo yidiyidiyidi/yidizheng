@@ -4,6 +4,23 @@
    - animated film grain over everything, like the photo
    ========================================================== */
 
+/* Paragon — the site's typeface (self-hosted in /fonts).
+   Characters Paragon lacks (e.g. š, ł, –) fall back to EB Garamond. */
+@font-face {
+    font-family: "Paragon";
+    src: url("fonts/Paragon-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Paragon";
+    src: url("fonts/Paragon-Italic.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
 html {
     background-color: #fff;
 }
@@ -47,7 +64,7 @@ body::after {
 .name-zh {
     font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
     font-weight: 700;
-    /* spacing rule for the name (measured on screen, ~10px at 32px type):
+    /* spacing rule for the name:
        郑 · 一 · 荻 gaps  =  "yidi" · "zheng" gap  =  1 unit
        gap between 郑一荻 and yidi zheng       =  2 units */
     letter-spacing: 0.25em;     /* opens 郑 一 荻 to ~10px apart */
@@ -56,18 +73,19 @@ body::after {
 
 /* The name "Yidi Zheng 郑一荻" — identical on every page */
 h1 {
+    /* the name keeps its original fonts; the rest of the site is in Paragon */
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 2rem;
     font-weight: bold;
     color: #D8321F;
     white-space: nowrap;
-    text-transform: lowercase;   /* yidi zheng */
+    text-transform: none;        /* "Yidi Zheng" exactly as written */
     word-spacing: -0.39em;       /* ~10px between "yidi" and "zheng" */
 }
 
 /* Contact line under the name — grey, same size as body text */
 .contact {
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;
     font-size: 0.85rem;
     color: #555;
     margin: 0;
@@ -78,7 +96,7 @@ h1 {
 }
 .contact a {
     display: block;          /* email on its own line under CONTACT */
-    color: inherit;
+    color: #888;             /* same lighter grey as the tracklists */
     text-decoration: none;
 }
 .contact a:hover {
@@ -106,7 +124,7 @@ html body {
     align-items: flex-start;
 }
 .site > header {
-    margin-bottom: 80px;
+    margin-bottom: 110px;   /* space between the name and the menu/content */
 }
 
 /* Header: name on the left, contact on the right (top-aligned) */
@@ -120,7 +138,7 @@ html body {
 .site > header .contact {
     grid-column: 2; grid-row: 1; text-align: right;
     /* nudge so the top of "contact" lines up with the top of 郑一荻 yidi zheng */
-    margin-top: 7px;
+    margin-top: 6px;
 }
 
 .layout {
@@ -145,7 +163,7 @@ html body {
 .side-nav a {
     display: inline-flex;
     align-items: center;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;
     font-size: 1.125rem;
     font-weight: bold;
     color: #D8321F;
@@ -155,25 +173,27 @@ html body {
 }
 
 .side-nav .radio {
-    width: 0.8em;
-    height: 0.8em;
+    width: 0.7em;                /* 12.6px */
+    height: 0.7em;
     margin-right: 0.55em;
-    border: 2px solid #D8321F;
-    border-radius: 50%;
+    border: 1.5px solid #D8321F;
+    border-radius: 50%;          /* round */
     box-sizing: border-box;
     flex-shrink: 0;
     background: transparent;
     transition: background 0.15s ease;
+    position: relative;
+    top: -1px;                   /* optically centred on the lowercase letters */
 }
 
-/* hover: a faint dot appears */
+/* hover: the whole button fills in pale red */
 .side-nav a:hover .radio {
-    background: radial-gradient(circle, rgba(216, 50, 31, 0.35) 0 34%, transparent 38%);
+    background: rgba(216, 50, 31, 0.35);
 }
 
-/* current page: solid dot inside the ring */
+/* current page: the whole button is solid red */
 .side-nav a.current .radio {
-    background: radial-gradient(circle, #D8321F 0 34%, transparent 38%);
+    background: #D8321F;
 }
 
 /* phones: menu becomes one row under the name */
@@ -216,7 +236,7 @@ html body {
     }
     .side-nav .radio {
         margin-right: 0.35em;
-        border-width: 1.5px;
+        border-width: 1.2px;
     }
 }
 
@@ -243,13 +263,35 @@ a.project-title:hover,
     font-weight: normal;
 }
 
-/* Mix buttons: just a large red ▶ (■ while playing), no text */
+/* Mix buttons: a red play triangle with rounded corners, no text (14.4px tall,
+   slightly bigger than the 12.6px menu buttons). Like them: hover fills it in pale red,
+   and while the mix is playing the whole triangle is solid red. */
 .audio-control-btn .text {
     display: none;
 }
 .audio-control-btn .icon {
-    width: auto !important;
+    display: inline-block;
+    width: 16px !important;      /* triangle is 14.4px tall */
+    height: 16px;
     margin-right: 0 !important;
-    font-size: 1.9rem !important;
-    line-height: 1;
+    font-size: 0 !important;     /* hide the ▶ / ■ characters; the shape is drawn below */
+    color: transparent;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.91 1.55 L14.29 8.00 L2.91 14.45 Z' fill='none' stroke='%23D8321F' stroke-width='1.5' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+}
+.audio-control-btn:hover .icon {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.91 1.55 L14.29 8.00 L2.91 14.45 Z' fill='%23D8321F' fill-opacity='0.35' stroke='%23D8321F' stroke-width='1.5' stroke-linejoin='round'/></svg>");
+}
+.audio-control-btn.is-playing .icon {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.91 1.55 L14.29 8.00 L2.91 14.45 Z' fill='%23D8321F' fill-opacity='1' stroke='%23D8321F' stroke-width='1.5' stroke-linejoin='round'/></svg>");
+}
+
+/* Description text under each entry (research, conference, visual)
+   matches the bio on the front page: 0.9rem Paragon, grey, same line spacing */
+.project .article-description-wrapper,
+.project .article-description-wrapper p,
+.project .description,
+.project .description p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
 }

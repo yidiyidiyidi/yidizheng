@@ -11,12 +11,15 @@
     <meta property="og:url" content="https://yidizheng.info/sound.html">
     <meta property="og:image" content="https://yidizheng.info/yidi.jpg">
     <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap">
     <link rel="stylesheet" href="film.css">
     <style>
         body {
             background-color: transparent;
             color: #555;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;
             margin: 0;
             padding: 60px 20px;
             line-height: 1.6;
@@ -134,11 +137,27 @@
             font-size: 0.75rem;
         }
         
-        .audio-control-btn:hover {
-            opacity: 0.8;
-        }
+
 
         /* HIDE SOUNDCLOUD VISUALLY BUT KEEP FOR API TRACKING */
+        /* play triangle sits in front of the mix title */
+        .title-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .title-line .audio-control-btn {
+            padding: 0;
+            margin: 0;
+            flex-shrink: 0;
+            /* centre the triangle on the first line of the title */
+            height: calc(1.05rem * 1.6);
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            top: -3px;               /* optically centred on the lowercase letters */
+        }
+
         .yt-hidden-player {
             position: absolute;
             width: 1px;
@@ -281,16 +300,17 @@
         <!-- PROJECT 0: NTS RADIO -->
         <section class="project" id="nts-mix">
             <div class="project-info">
-                <a class="project-title" href="https://www.nts.live/shows/dancing-2026/episodes/dancing-2026-rooftop-variety-shop-mix-w-yidiyidiyidi-21st-september-2026" target="_blank">[mix] Dubstep, Drum & Bass, Footwork with NTS Radio</a>
+                <div class="title-line">
+                    <button class="audio-control-btn" id="nts-toggle" aria-label="Play mix">
+                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
+                    </button>
+                    <a class="project-title" href="https://www.nts.live/shows/dancing-2026/episodes/dancing-2026-rooftop-variety-shop-mix-w-yidiyidiyidi-21st-september-2026" target="_blank">Dubstep, Drum & Bass, Footwork with NTS Radio</a>
+                </div>
                 <span class="project-meta">Guangzhou, Sep 2026</span>
             </div>
             
             <div class="audio-section">
                 <div class="media-container left-content">
-                    <!-- Native Button Trigger -->
-                    <button class="audio-control-btn" id="nts-toggle" aria-label="Play mix">
-                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
-                    </button>
 
                     <!-- Hidden SoundCloud iframe -->
                     <iframe class="sc-hidden-player" id="nts-player" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2326040987&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
@@ -329,15 +349,17 @@
         <!-- C+ RADIO (audio from YouTube, played through a hidden player) -->
         <section class="project" id="cplus-mix">
             <div class="project-info">
-                <span class="project-title">[mix] UK Funky and Dubstep with C+ Radio</span>
+                <div class="title-line">
+                    <button class="audio-control-btn" id="cplus-toggle" aria-label="Play mix">
+                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
+                    </button>
+                    <span class="project-title">UK Funky and Dubstep with C+ Radio</span>
+                </div>
                 <span class="project-meta">Guangzhou, Sep 2026</span>
             </div>
 
             <div class="audio-section">
                 <div class="media-container left-content">
-                    <button class="audio-control-btn" id="cplus-toggle" aria-label="Play mix">
-                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
-                    </button>
 
                     <!-- Hidden YouTube player: sound only, the video is never shown -->
                     <div class="yt-hidden-player" aria-hidden="true"><div id="cplus-player"></div></div>
@@ -395,16 +417,17 @@
         <!-- PROJECT 1: MOTH RADIO -->
         <section class="project" id="moth-mix">
             <div class="project-info">
-                <a class="project-title" href="https://soundcloud.com/moth-radio/global-bass-baile-funk-grime" target="_blank">[mix] Global Bass, Baile Funk, Grime with Möth Radio</a>
+                <div class="title-line">
+                    <button class="audio-control-btn" id="moth-toggle" aria-label="Play mix">
+                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
+                    </button>
+                    <a class="project-title" href="https://soundcloud.com/moth-radio/global-bass-baile-funk-grime" target="_blank">Global Bass, Baile Funk, Grime with Möth Radio</a>
+                </div>
                 <span class="project-meta">Hong Kong, May 2026</span>
             </div>
             
             <div class="audio-section">
                 <div class="media-container left-content">
-                    <!-- Native Button Trigger -->
-                    <button class="audio-control-btn" id="moth-toggle" aria-label="Play mix">
-                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
-                    </button>
 
                     <!-- Hidden SoundCloud iframe -->
                     <iframe class="sc-hidden-player" id="moth-player" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2326040987&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
@@ -446,16 +469,17 @@
         <!-- PROJECT 2: BYYB RADIO -->
         <section class="project" id="mix">
             <div class="project-info">
-                <a class="project-title" href="https://soundcloud.com/byyb_radio/yidiyidiyidi-byyb-radio-mar-14" target="_blank">[mix] Latin Club, Electro, Ghetto House with byyb.radio</a>
+                <div class="title-line">
+                    <button class="audio-control-btn" id="byyb-toggle" aria-label="Play mix">
+                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
+                    </button>
+                    <a class="project-title" href="https://soundcloud.com/byyb_radio/yidiyidiyidi-byyb-radio-mar-14" target="_blank">Latin Club, Electro, Ghetto House with byyb.radio</a>
+                </div>
                 <span class="project-meta">Shanghai, Mar 2026</span>
             </div>
             
             <div class="audio-section">
                 <div class="media-container left-content">
-                    <!-- Native Button Trigger -->
-                    <button class="audio-control-btn" id="byyb-toggle" aria-label="Play mix">
-                        <span class="icon">▶&#xFE0E;</span> <span class="text">PLAY MIX</span>
-                    </button>
 
                     <!-- Hidden SoundCloud iframe -->
                     <iframe class="sc-hidden-player" id="byyb-player" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2294544656&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
@@ -517,12 +541,12 @@
         });
 
         ntsWidget.bind(SC.Widget.Events.PLAY, function() {
-            ntsIcon.innerText = "■";
+            ntsIcon.innerText = "■"; ntsToggle.classList.add("is-playing");
             ntsText.innerText = "PAUSE MIX";
         });
 
         ntsWidget.bind(SC.Widget.Events.PAUSE, function() {
-            ntsIcon.innerText = "▶\uFE0E";
+            ntsIcon.innerText = "▶\uFE0E"; ntsToggle.classList.remove("is-playing");
             ntsText.innerText = "PLAY MIX";
         });
 
@@ -539,12 +563,12 @@
         });
 
         mothWidget.bind(SC.Widget.Events.PLAY, function() {
-            mothIcon.innerText = "■";
+            mothIcon.innerText = "■"; mothToggle.classList.add("is-playing");
             mothText.innerText = "PAUSE MIX";
         });
 
         mothWidget.bind(SC.Widget.Events.PAUSE, function() {
-            mothIcon.innerText = "▶\uFE0E";
+            mothIcon.innerText = "▶\uFE0E"; mothToggle.classList.remove("is-playing");
             mothText.innerText = "PLAY MIX";
         });
 
@@ -582,12 +606,12 @@
         });
 
         byybWidget.bind(SC.Widget.Events.PLAY, function() {
-            byybIcon.innerText = "■";
+            byybIcon.innerText = "■"; byybToggle.classList.add("is-playing");
             byybText.innerText = "PAUSE MIX";
         });
 
         byybWidget.bind(SC.Widget.Events.PAUSE, function() {
-            byybIcon.innerText = "▶\uFE0E";
+            byybIcon.innerText = "▶\uFE0E"; byybToggle.classList.remove("is-playing");
             byybText.innerText = "PLAY MIX";
         });
     });
@@ -602,7 +626,7 @@
         var player = null, ready = false, wantPlay = false;
 
         function setPlaying(on) {
-            icon.innerText = on ? "■" : "▶\uFE0E";
+            icon.innerText = on ? "■" : "▶\uFE0E"; toggle.classList.toggle("is-playing", on);
             text.innerText = on ? "PAUSE MIX" : "PLAY MIX";
         }
 
