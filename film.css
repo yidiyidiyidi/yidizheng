@@ -80,6 +80,13 @@ h1 {
     color: #D8321F;
     white-space: nowrap;
     text-transform: none;        /* "Yidi Zheng" exactly as written */
+}
+/* "Yidi Zheng": between regular and bold — regular weight thickened with a thin outline
+   (looks the same whichever monospace font the visitor has) */
+h1 a {
+    font-weight: normal;
+    -webkit-text-stroke: 0.025em currentColor;
+    paint-order: stroke fill;
     word-spacing: -0.39em;       /* ~10px between "yidi" and "zheng" */
 }
 
@@ -169,7 +176,10 @@ html body {
     color: #D8321F;
     text-decoration: none;
     line-height: 1;
-    text-transform: none;        /* Bio / Research / Conference / Sound / Visual */
+    text-transform: none;        /* Bio / Research / Conference / Sound / Cartography */
+    /* Paragon has no bold weight: a thin outline in the same red makes the menu bolder */
+    -webkit-text-stroke: 0.025em currentColor;
+    paint-order: stroke fill;
 }
 
 .side-nav .radio {
