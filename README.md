@@ -7,7 +7,7 @@ Static site, plain HTML/CSS (no build step). Hosted with GitHub Pages.
 - `research.html` — research & writing
 - `conference.html` — conference presentations
 - `sound.html` — DJ mixes (SoundCloud players + tracklists)
-- `visual.html` — visual work (map series)
+- `visual.html` — Cartography (map series)
 - `film.css` — shared styles for all pages: white background with faint film grain, the name "Yidi Zheng 郑一荻", and the side menu (Bio / Research / Conference / Sound / Visual)
 - `fonts/` — the Paragon typeface (regular + italic) used across the site
 - `yidi.jpg` — portrait
