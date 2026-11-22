@@ -137,8 +137,8 @@ html body {
 .site > header h1 { grid-column: 1; grid-row: 1; }
 .site > header .contact {
     grid-column: 2; grid-row: 1; text-align: right;
-    /* nudge so the top of "contact" lines up with the top of 郑一荻 yidi zheng */
-    margin-top: 6px;
+    /* nudge so the top of "Contact" lines up with the top of 郑一荻 yidi zheng */
+    margin-top: 7px;
 }
 
 .layout {
@@ -169,7 +169,7 @@ html body {
     color: #D8321F;
     text-decoration: none;
     line-height: 1;
-    text-transform: lowercase;   /* bio / research / conference / sound / visual */
+    text-transform: none;        /* Bio / Research / Conference / Sound / Visual */
 }
 
 .side-nav .radio {
@@ -252,9 +252,9 @@ a.project-title:hover,
     text-underline-offset: 4px;
 }
 
-/* "tracklist" label in lowercase */
+/* "Tracklist" label, normal capitalization */
 .tracklist-header {
-    text-transform: lowercase;
+    text-transform: none;
 }
 
 /* Dates and locations: normal capitalization, regular weight (not bold) */
