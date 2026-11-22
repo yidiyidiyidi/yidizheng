@@ -66,9 +66,9 @@ body::after {
     font-weight: 700;
     /* spacing rule for the name:
        郑 · 一 · 荻 gaps  =  "yidi" · "zheng" gap  =  1 unit
-       gap between 郑一荻 and yidi zheng       =  2 units */
+       gap between 郑一荻 and Yidi Zheng       =  4 units */
     letter-spacing: 0.25em;     /* opens 郑 一 荻 to ~10px apart */
-    margin-right: 0.32em;       /* ~20px between the Chinese and English names */
+    margin-right: 0.93em;       /* ~39px between the Chinese and English names */
 }
 
 /* The name "Yidi Zheng 郑一荻" — identical on every page */

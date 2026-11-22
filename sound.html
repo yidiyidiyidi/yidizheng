@@ -158,6 +158,57 @@
             top: -3px;               /* optically centred on the lowercase letters */
         }
 
+        /* MIX PROGRESS BAR — fixed near the bottom of the window, spanning the
+           content column; same thin rounded look as the tracklist scrollbars */
+        .mix-progress {
+            position: fixed;
+            bottom: 28px;
+            left: max(20px, calc(50% - 517.5px + 220px));
+            right: max(20px, calc(50% - 517.5px));
+            height: 6px;
+            border-radius: 3px;
+            background: #e4e4e4;          /* not yet played */
+            box-shadow: 0 0 0 8px #fff;   /* keeps scrolling text from touching the bar */
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .mix-progress.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mix-progress-fill {
+            height: 100%;
+            width: 0;
+            background: #D8321F;          /* played */
+            border-radius: 3px;
+            transition: width 0.4s linear;
+        }
+
+        /* tracklist scrollbars: thin, rounded, grey — matching the progress bar */
+        .tracklist {
+            scrollbar-width: thin;
+            scrollbar-color: #c8c8c8 #e4e4e4;
+        }
+        .tracklist::-webkit-scrollbar {
+            width: 6px;
+        }
+        .tracklist::-webkit-scrollbar-track {
+            background: #e4e4e4;
+            border-radius: 3px;
+        }
+        .tracklist::-webkit-scrollbar-thumb {
+            background: #c8c8c8;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 760px) {
+            .mix-progress { left: 15px; right: 15px; bottom: 18px; }
+        }
+
         .yt-hidden-player {
             position: absolute;
             width: 1px;
@@ -526,6 +577,41 @@
 </div>
 
 <!-- SOUNDCLOUD WIDGET API -->
+<!-- MIX PROGRESS BAR: appears once a mix starts; red = played, grey = still to come.
+     Click anywhere on it to jump to that point. -->
+<div class="mix-progress" id="mix-progress" aria-hidden="true">
+    <div class="mix-progress-fill" id="mix-progress-fill"></div>
+</div>
+<script>
+    window.MixBar = (function () {
+        var bar = document.getElementById('mix-progress');
+        var fill = document.getElementById('mix-progress-fill');
+        var active = null, seekers = {};
+        function set(frac) {
+            fill.style.width = (Math.max(0, Math.min(1, frac)) * 100) + '%';
+        }
+        bar.addEventListener('click', function (e) {
+            if (!active || !seekers[active]) return;
+            var r = bar.getBoundingClientRect();
+            var frac = (e.clientX - r.left) / r.width;
+            set(frac);
+            seekers[active](frac);
+        });
+        return {
+            // a mix started playing: show the bar and follow this mix
+            activate: function (id, seek) {
+                if (active !== id) set(0);
+                active = id; seekers[id] = seek;
+                bar.classList.add('is-visible');
+            },
+            // progress report from a mix (0..1); only the active mix moves the bar
+            update: function (id, frac) {
+                if (id === active) set(frac);
+            }
+        };
+    })();
+</script>
+
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -542,7 +628,14 @@
 
         ntsWidget.bind(SC.Widget.Events.PLAY, function() {
             ntsIcon.innerText = "■"; ntsToggle.classList.add("is-playing");
+            MixBar.activate('nts', function (frac) {
+                ntsWidget.getDuration(function (ms) { ntsWidget.seekTo(frac * ms); });
+            });
             ntsText.innerText = "PAUSE MIX";
+        });
+
+        ntsWidget.bind(SC.Widget.Events.PLAY_PROGRESS, function(data) {
+            MixBar.update('nts', data.relativePosition);
         });
 
         ntsWidget.bind(SC.Widget.Events.PAUSE, function() {
@@ -564,6 +657,9 @@
 
         mothWidget.bind(SC.Widget.Events.PLAY, function() {
             mothIcon.innerText = "■"; mothToggle.classList.add("is-playing");
+            MixBar.activate('moth', function (frac) {
+                mothWidget.getDuration(function (ms) { mothWidget.seekTo(frac * ms); });
+            });
             mothText.innerText = "PAUSE MIX";
         });
 
@@ -573,6 +669,7 @@
         });
 
         mothWidget.bind(SC.Widget.Events.PLAY_PROGRESS, function(data) {
+            MixBar.update('moth', data.relativePosition);
             var currentSeconds = data.currentPosition / 1000;
             var activeIndex = -1;
 
@@ -607,7 +704,14 @@
 
         byybWidget.bind(SC.Widget.Events.PLAY, function() {
             byybIcon.innerText = "■"; byybToggle.classList.add("is-playing");
+            MixBar.activate('byyb', function (frac) {
+                byybWidget.getDuration(function (ms) { byybWidget.seekTo(frac * ms); });
+            });
             byybText.innerText = "PAUSE MIX";
+        });
+
+        byybWidget.bind(SC.Widget.Events.PLAY_PROGRESS, function(data) {
+            MixBar.update('byyb', data.relativePosition);
         });
 
         byybWidget.bind(SC.Widget.Events.PAUSE, function() {
@@ -625,9 +729,21 @@
         var text = toggle.querySelector('.text');
         var player = null, ready = false, wantPlay = false;
 
+        var poll = null;
         function setPlaying(on) {
             icon.innerText = on ? "■" : "▶\uFE0E"; toggle.classList.toggle("is-playing", on);
             text.innerText = on ? "PAUSE MIX" : "PLAY MIX";
+            clearInterval(poll);
+            if (on) {
+                MixBar.activate('cplus', function (frac) {
+                    var d = player.getDuration();
+                    if (d) player.seekTo(frac * d, true);
+                });
+                poll = setInterval(function () {
+                    var d = player.getDuration();
+                    if (d) MixBar.update('cplus', player.getCurrentTime() / d);
+                }, 500);
+            }
         }
 
         window.onYouTubeIframeAPIReady = function () {
