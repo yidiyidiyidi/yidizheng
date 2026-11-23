@@ -9,6 +9,7 @@ Static site, plain HTML/CSS (no build step). Hosted with GitHub Pages.
 - `sound.html` — DJ mixes (SoundCloud players + tracklists)
 - `visual.html` — Cartography (map series)
 - `film.css` — shared styles for all pages: white background with faint film grain, the name "Yidi Zheng 郑一荻", and the side menu (Bio / Research / Conference / Sound / Visual)
+- `autoplay.js` — starts the NTS mix when someone enters the site and keeps it going across pages
 - `fonts/` — the Paragon typeface (regular + italic) used across the site
 - `yidi.jpg` — portrait
 - `CNAME` — connects the custom domain yidizheng.info (don't delete)

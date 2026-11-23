@@ -62,13 +62,19 @@ body::after {
 /* Chinese name to the left of "yidi zheng" — same red and size,
    in a bold Chinese sans-serif that matches the monospace weight */
 .name-zh {
-    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
-    font-weight: 700;
+    /* Hiragino Mincho W6 (built into Macs/iPhones). Characters it lacks, like the
+       simplified 郑, are filled in by Noto Serif SC (思源宋体, a 明朝 in the same spirit),
+       which also covers all three characters on Windows/Android. */
+    font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "ヒラギノ明朝 ProN", "Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", "SimSun", serif;
+    font-weight: 600;
     /* spacing rule for the name:
        郑 · 一 · 荻 gaps  =  "yidi" · "zheng" gap  =  1 unit
-       gap between 郑一荻 and Yidi Zheng       =  4 units */
-    letter-spacing: 0.25em;     /* opens 郑 一 荻 to ~10px apart */
-    margin-right: 0.93em;       /* ~39px between the Chinese and English names */
+       gap between 一荻 and yidi              =  2 units */
+    letter-spacing: 0.28em;     /* opens 郑 一 荻 to ~9.5px apart */
+    margin-right: 0.34em;       /* ~20px between 一荻 and yidi */
+    /* extra weight so 一荻 reads clearly bold */
+    -webkit-text-stroke: 0.03em currentColor;
+    paint-order: stroke fill;
 }
 
 /* The name "Yidi Zheng 郑一荻" — identical on every page */
@@ -79,15 +85,21 @@ h1 {
     font-weight: bold;
     color: #D8321F;
     white-space: nowrap;
-    text-transform: none;        /* "Yidi Zheng" exactly as written */
+    text-transform: lowercase;   /* yidi zheng */
 }
-/* "Yidi Zheng": between regular and bold — regular weight thickened with a thin outline
-   (looks the same whichever monospace font the visitor has) */
+/* "Yidi Zheng": Paragon, regular weight thickened slightly with a thin outline */
 h1 a {
+    font-weight: normal;
+}
+.site > header h1 a {
+    position: relative;
+    top: -4px;                   /* centres "yidi" on 一荻 */
+    font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;   /* same as the rest of the English text */
+    color: #555;                 /* "Yidi Zheng" in grey; 郑一荻 stays red */
     font-weight: normal;
     -webkit-text-stroke: 0.025em currentColor;
     paint-order: stroke fill;
-    word-spacing: -0.39em;       /* ~10px between "yidi" and "zheng" */
+    word-spacing: 0.08em;        /* ~9.5px between "yidi" and "zheng", matching the gaps in 郑 一 荻 */
 }
 
 /* Contact line under the name — grey, same size as body text */
@@ -144,7 +156,8 @@ html body {
 .site > header h1 { grid-column: 1; grid-row: 1; }
 .site > header .contact {
     grid-column: 2; grid-row: 1; text-align: right;
-    /* nudge so the top of "Contact" lines up with the top of 郑一荻 yidi zheng */
+    line-height: 1.4;            /* the two lines span the same height as the name */
+    /* nudge so the top of "contact" lines up with the top of 郑一荻 yidi zheng */
     margin-top: 7px;
 }
 
@@ -176,7 +189,7 @@ html body {
     color: #D8321F;
     text-decoration: none;
     line-height: 1;
-    text-transform: none;        /* Bio / Research / Conference / Sound / Cartography */
+    text-transform: lowercase;   /* bio / research / conference / sound / cartography */
     /* Paragon has no bold weight: a thin outline in the same red makes the menu bolder */
     -webkit-text-stroke: 0.025em currentColor;
     paint-order: stroke fill;
@@ -267,9 +280,9 @@ a.project-title:hover,
     text-underline-offset: 4px;
 }
 
-/* "Tracklist" label, normal capitalization */
+/* "tracklist" label in lowercase */
 .tracklist-header {
-    text-transform: none;
+    text-transform: lowercase;
 }
 
 /* Dates and locations: normal capitalization, regular weight (not bold) */

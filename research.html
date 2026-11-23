@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&text=%E4%B8%80%E8%8D%BB%E6%8D%89%E8%99%AB%E6%97%B6%E7%A9%BA%E4%BA%A4%E9%9B%86&display=swap">
     <link rel="stylesheet" href="film.css">
     <style>
         body {
@@ -47,14 +48,17 @@
             body { padding: 40px 15px; }
             header { margin-bottom: 60px; }
         }
+        /* first line of text lines up with the top of "bio" in the menu */
+        .layout > main { margin-top: -5px; }
+        @media (max-width: 760px) { .layout > main { margin-top: 0; } }
     </style>
 </head>
 <body>
 
 <div class="container site">
     <header>
-        <h1><span class="name-zh" lang="zh-Hans">郑一荻</span><a href="index.html">Yidi Zheng</a></h1>
-        <div class="contact"><span class="contact-label">Contact</span> <a href="mailto:yidi.zheng@duke.edu">yidi.zheng@duke.edu</a></div>
+        <h1><span class="name-zh" lang="zh-Hans">一荻</span><a href="index.html">Yidi</a></h1>
+        <div class="contact"><span class="contact-label">contact</span> <a href="mailto:yidi.zheng@duke.edu">yidi.zheng@duke.edu</a></div>
     </header>
 
     <div class="layout">
@@ -89,5 +93,7 @@
     </div>
 </div>
 
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script src="autoplay.js"></script>
 </body>
 </html>
