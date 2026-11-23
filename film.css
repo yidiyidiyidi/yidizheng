@@ -94,7 +94,7 @@ h1 {
 /* the pinyin above each character */
 .name-zh rt {
     font-family: "EB Garamond", Garamond, "Times New Roman", serif;   /* has ī and í, so yī dí is all one font */
-    font-size: 1.2rem;           /* pinyin */
+    font-size: 1.125rem;         /* pinyin: same size as "bio" in the menu */
     font-weight: bold;           /* bold, like "contact" */
     color: #555;
     letter-spacing: 0;           /* no extra spacing, so each syllable stays exactly centred */
