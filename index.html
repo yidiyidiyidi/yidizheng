@@ -120,19 +120,13 @@
         }
 
         .bio {
-            /* the three paragraphs spread to fill exactly the photo's height,
-               so the text's top and bottom always line up with the photo */
-            height: calc(var(--photo-w) * 4 / 3);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            font-size: 0.9rem;
+            font-size: 1.15rem;
             position: relative;
             z-index: 1;
         }
 
         .bio p {
-            margin: 0;
+            margin: 0 0 1em 0;   /* normal paragraph spacing */
         }
 
         .bio p:last-child {
@@ -161,8 +155,32 @@
         }
         /* top of the photo and of the bio text line up with the top of "bio" in the menu */
         .layout > main { margin-top: -1.2px; }
+        /* the menu stretches from the top of the bio text to its last line */
+        .layout { align-items: stretch; }
+        .layout > .side-nav { height: auto; align-self: stretch; padding-bottom: 6.9px; }   /* "cartography" sits on the baseline of the last line of text */
         .bio p:first-child { margin-top: -3.8px; }
-        @media (max-width: 760px) { .layout > main { margin-top: 0; } }
+        /* WIDER TEXT: the bio text fills the space left of a narrower photo column.
+           The photo stretches to the height of the text (cropped to fit), so the
+           menu, the text and the photo all share the same top and bottom. */
+        @media (min-width: 761px) {
+            /* WIDER TEXT: the bio text fills the space left of the photo.
+               The photo keeps its 3:4 shape; a small script sets its width so its
+               height equals the text's, so the menu, the text and the photo all
+               share the same top and bottom. */
+            :root { --photo-w: 280px; --col-gap: 50px; }   /* the script refines --photo-w */
+            .intro {
+                grid-template-columns: minmax(0, 1fr) var(--photo-w);
+                justify-content: stretch;
+                align-items: start;
+            }
+            .photo {
+                margin-top: 4px;      /* photo top level with "bio" / the first line */
+            }
+            .photo img {
+                width: 100%;
+                height: auto;         /* 3:4, never cropped */
+            }
+        }
     </style>
 </head>
 <body>
@@ -197,6 +215,33 @@
     </div>
 </div>
 
+
+<script>
+    // Bio page: size the 3:4 photo so its height matches the bio text
+    // (from the top of the first line to the baseline of the last line).
+    (function () {
+        var TOP = 4, BOTTOM = 9.4;               // gaps between the text box and its first/last line
+        var root = document.documentElement, bio = document.querySelector('.bio');
+        function textH() { return bio.getBoundingClientRect().height - TOP - BOTTOM; }
+        function fit() {
+            if (window.innerWidth <= 760) { root.style.removeProperty('--photo-w'); return; }
+            var main = document.querySelector('.intro').getBoundingClientRect().width;
+            var maxW = main * 0.4, minW = 160, w = 280;
+            // repeat: photo width = 3/4 of the text height (the text reflows each time)
+            for (var i = 0; i < 8; i++) {
+                root.style.setProperty('--photo-w', w + 'px');
+                var next = Math.max(minW, Math.min(maxW, textH() * 3 / 4));
+                if (Math.abs(next - w) < 0.25) { w = next; break; }
+                w = (w + next) / 2;
+            }
+            root.style.setProperty('--photo-w', w + 'px');
+        }
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+        window.addEventListener('load', fit);
+        window.addEventListener('resize', fit);
+        fit();
+    })();
+</script>
 
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script src="autoplay.js"></script>

@@ -119,9 +119,8 @@ h1 {
    the current page's button is filled with a dot.
    ========================================================== */
 .container.site {
-    /* menu 150 + gap 70 + content 815 (Bio photo 265 + gap 90 + bio 460),
-       so the right edge of every page lines up with the bio's right edge */
-    max-width: 1035px;
+    /* menu 150 + gap 70 + content 865: on the bio page, wide text + gap + 3:4 photo */
+    max-width: 1085px;
 }
 
 /* Same page margins and header spacing on every page,
@@ -301,12 +300,12 @@ a.project-title:hover,
 }
 
 /* Description text under each entry (research, conference, visual)
-   matches the bio on the front page: 0.9rem EB Garamond, grey, same line spacing */
+   matches the bio on the front page: 1.15rem EB Garamond, grey, same line spacing */
 .project .article-description-wrapper,
 .project .article-description-wrapper p,
 .project .description,
 .project .description p {
-    font-size: 0.9rem;
+    font-size: 1.15rem;
     color: #555;
     line-height: 1.6;
 }
