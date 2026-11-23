@@ -4,23 +4,6 @@
    - animated film grain over everything, like the photo
    ========================================================== */
 
-/* Paragon — the site's typeface (self-hosted in /fonts).
-   Characters Paragon lacks (e.g. š, ł, –) fall back to EB Garamond. */
-@font-face {
-    font-family: "Paragon";
-    src: url("fonts/Paragon-Regular.otf") format("opentype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Paragon";
-    src: url("fonts/Paragon-Italic.otf") format("opentype");
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
-
 html {
     background-color: #fff;
 }
@@ -62,7 +45,7 @@ body::after {
 /* Chinese name to the left of "yidi zheng" — same red and size,
    in a bold Chinese sans-serif that matches the monospace weight */
 /* The name: 一荻 in red Hiragino Mincho, with "yi" "di" above each
-   character like pinyin, in small grey Paragon. Identical on every page. */
+   character like pinyin, in small grey EB Garamond. Identical on every page. */
 h1 {
     font-size: 2.6rem;           /* 一荻 */
     font-weight: normal;
@@ -106,7 +89,7 @@ h1 {
 
 /* Contact line under the name — grey, same size as body text */
 .contact {
-    font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;
+    font-family: "EB Garamond", Garamond, "Times New Roman", serif;
     font-size: 0.85rem;
     color: #555;
     margin: 0;
@@ -188,16 +171,13 @@ html body {
 .side-nav a {
     display: inline-flex;
     align-items: center;
-    font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;
+    font-family: "EB Garamond", Garamond, "Times New Roman", serif;
     font-size: 1.125rem;
     font-weight: bold;
     color: #D8321F;
     text-decoration: none;
     line-height: 1;
     text-transform: lowercase;   /* bio / research / conference / sound / cartography */
-    /* Paragon has no bold weight: a thin outline in the same red makes the menu bolder */
-    -webkit-text-stroke: 0.025em currentColor;
-    paint-order: stroke fill;
 }
 
 .side-nav .radio {
@@ -321,7 +301,7 @@ a.project-title:hover,
 }
 
 /* Description text under each entry (research, conference, visual)
-   matches the bio on the front page: 0.9rem Paragon, grey, same line spacing */
+   matches the bio on the front page: 0.9rem EB Garamond, grey, same line spacing */
 .project .article-description-wrapper,
 .project .article-description-wrapper p,
 .project .description,
