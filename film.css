@@ -61,45 +61,47 @@ body::after {
 
 /* Chinese name to the left of "yidi zheng" — same red and size,
    in a bold Chinese sans-serif that matches the monospace weight */
+/* The name: 一荻 in red Hiragino Mincho, with "yi" "di" above each
+   character like pinyin, in small grey Paragon. Identical on every page. */
+h1 {
+    font-size: 2.6rem;           /* 一荻 */
+    font-weight: normal;
+    color: #D8321F;
+    white-space: nowrap;
+    line-height: 1;
+}
+.site > header h1 a.name-link {
+    color: inherit;
+    text-decoration: none;
+}
 .name-zh {
-    /* Hiragino Mincho W6 (built into Macs/iPhones). Characters it lacks, like the
-       simplified 郑, are filled in by Noto Serif SC (思源宋体, a 明朝 in the same spirit),
-       which also covers all three characters on Windows/Android. */
+    /* Hiragino Mincho W6 (built into Macs/iPhones); other devices get the
+       similar Noto Serif SC (思源宋体) */
     font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "ヒラギノ明朝 ProN", "Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", "SimSun", serif;
     font-weight: 600;
-    /* spacing rule for the name:
-       郑 · 一 · 荻 gaps  =  "yidi" · "zheng" gap  =  1 unit
-       gap between 一荻 and yidi              =  2 units */
-    letter-spacing: 0.28em;     /* opens 郑 一 荻 to ~9.5px apart */
-    margin-right: 0.34em;       /* ~20px between 一荻 and yidi */
+    letter-spacing: 0;
     /* extra weight so 一荻 reads clearly bold */
     -webkit-text-stroke: 0.03em currentColor;
     paint-order: stroke fill;
 }
-
-/* The name "Yidi Zheng 郑一荻" — identical on every page */
-h1 {
-    /* the name keeps its original fonts; the rest of the site is in Paragon */
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #D8321F;
-    white-space: nowrap;
-    text-transform: lowercase;   /* yidi zheng */
+.name-zh ruby {
+    ruby-position: over;
+    ruby-align: center;
 }
-/* "Yidi Zheng": Paragon, regular weight thickened slightly with a thin outline */
-h1 a {
-    font-weight: normal;
+.name-zh ruby + ruby {
+    margin-left: 0.28em;         /* space between 一 and 荻 */
 }
-.site > header h1 a {
-    position: relative;
-    top: -4px;                   /* centres "yidi" on 一荻 */
-    font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;   /* same as the rest of the English text */
-    color: #555;                 /* "Yidi Zheng" in grey; 郑一荻 stays red */
-    font-weight: normal;
-    -webkit-text-stroke: 0.025em currentColor;
-    paint-order: stroke fill;
-    word-spacing: 0.08em;        /* ~9.5px between "yidi" and "zheng", matching the gaps in 郑 一 荻 */
+/* the pinyin above each character */
+.name-zh rt {
+    font-family: "Paragon", "EB Garamond", Garamond, "Times New Roman", serif;
+    font-size: 1rem;             /* pinyin: same size as "contact" */
+    font-weight: bold;           /* bold, like "contact" */
+    color: #555;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+    -webkit-text-stroke: 0;
+    line-height: 1.5;
+    padding-bottom: 2px;         /* a little air between pinyin and character */
 }
 
 /* Contact line under the name — grey, same size as body text */
@@ -111,10 +113,13 @@ h1 a {
     white-space: nowrap;
 }
 .contact-label {
+    display: block;
+    font-size: 1rem;             /* same size as the pinyin, on the same baseline */
     font-weight: bold;           /* "contact" in bold, lowercase */
 }
 .contact a {
-    display: block;          /* email on its own line under CONTACT */
+    display: block;          /* email on its own line under "contact" */
+    margin-top: 13.2px;      /* the email is centred on 一荻 */
     color: #888;             /* same lighter grey as the tracklists */
     text-decoration: none;
 }
@@ -156,9 +161,9 @@ html body {
 .site > header h1 { grid-column: 1; grid-row: 1; }
 .site > header .contact {
     grid-column: 2; grid-row: 1; text-align: right;
-    line-height: 1.4;            /* the two lines span the same height as the name */
+    line-height: 1.2;
     /* nudge so the top of "contact" lines up with the top of 郑一荻 yidi zheng */
-    margin-top: 7px;
+    margin-top: -0.25px;         /* "contact" is centred on the yī dí row */
 }
 
 .layout {
@@ -232,15 +237,17 @@ html body {
     }
     /* name shrinks a little on the narrowest phones so it stays on one line */
     .site > header h1 {
-        font-size: min(2rem, 8vw);
+        font-size: min(2.6rem, 10vw);
     }
     .site > header .contact {
         grid-column: 1;
         grid-row: 2;
         text-align: left;
-        margin-top: 0;
+        margin-top: 10px;
         margin-bottom: 8px;
+        line-height: 1.6;
     }
+    .contact a { margin-top: 2px; }
     .layout {
         display: block;
     }
