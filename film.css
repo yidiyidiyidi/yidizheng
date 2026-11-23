@@ -77,7 +77,7 @@ h1 {
 /* the pinyin above each character */
 .name-zh rt {
     font-family: "EB Garamond", Garamond, "Times New Roman", serif;   /* has ī and í, so yī dí is all one font */
-    font-size: 1.125rem;         /* pinyin: same size as "bio" in the menu */
+    font-size: 1.375rem;         /* pinyin: same size as the menu entries */
     font-weight: bold;           /* bold, like "contact" */
     color: #555;
     letter-spacing: 0;           /* no extra spacing, so each syllable stays exactly centred */
@@ -90,14 +90,14 @@ h1 {
 /* Contact line under the name — grey, same size as body text */
 .contact {
     font-family: "EB Garamond", Garamond, "Times New Roman", serif;
-    font-size: 0.85rem;
+    font-size: 1.1rem;           /* email */
     color: #555;
     margin: 0;
     white-space: nowrap;
 }
 .contact-label {
     display: block;
-    font-size: 1rem;             /* same size as the pinyin, on the same baseline */
+    font-size: 1.25rem;          /* "contact" */
     font-weight: bold;           /* "contact" in bold, lowercase */
 }
 .contact a {
@@ -145,7 +145,7 @@ html body {
     grid-column: 2; grid-row: 1; text-align: right;
     line-height: 1.4;            /* regular spacing between "contact" and the email */
     /* nudge so the top of "contact" lines up with the top of 郑一荻 yidi zheng */
-    margin-top: 1.5px;           /* "contact" is centred on the yī dí row */
+    margin-top: -0.25px;           /* "contact" is centred on the yī dí row */
 }
 
 .layout {
@@ -171,7 +171,7 @@ html body {
     display: inline-flex;
     align-items: center;
     font-family: "EB Garamond", Garamond, "Times New Roman", serif;
-    font-size: 1.125rem;
+    font-size: 1.375rem;         /* menu entries */
     font-weight: bold;
     color: #D8321F;
     text-decoration: none;
@@ -190,7 +190,7 @@ html body {
     background: transparent;
     transition: background 0.15s ease;
     position: relative;
-    top: -1px;                   /* optically centred on the lowercase letters */
+    top: 1.4px;                    /* optically centred on the lowercase letters */
 }
 
 /* hover: the whole button fills in pale red */
@@ -246,7 +246,7 @@ html body {
         background: #fff;
     }
     .side-nav a {
-        font-size: 0.78rem;
+        font-size: 0.9rem;
     }
     .side-nav .radio {
         margin-right: 0.35em;
